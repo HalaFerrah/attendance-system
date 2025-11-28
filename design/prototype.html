@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algiers University Attendance System - UI Prototype</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .role-section {
+            margin: 3rem 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .role-header {
+            background: #007bff;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .role-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .role-content {
+            padding: 2rem;
+        }
+
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .mockup-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .mockup-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .mockup-card h3 {
+            color: #007bff;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .mockup-image {
+            background: #e9ecef;
+            height: 200px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            color: #6c757d;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+        }
+
+        .workflow-section {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 3rem 0;
+        }
+
+        .workflow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .workflow-step {
+            text-align: center;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .workflow-step:before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #007bff;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .workflow-step h4 {
+            color: #007bff;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .tech-stack {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: 3rem 0;
+            border-radius: 10px;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tech-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .tech-item h5 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background: #343a40;
+            color: white;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .mockup-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .workflow-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>Algiers University</h1>
+            <p>Attendance Management System - UI Prototype</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="role-section">
+            <div class="role-header">
+                <h2>🎓 Student Dashboard</h2>
+                <p>View courses, check attendance, submit justifications</p>
+            </div>
+            <div class="role-content">
+                <div class="mockup-grid">
+                    <div class="mockup-card">
+                        <h3>📚 My Courses</h3>
+                        <div class="mockup-image">Course List View</div>
+                        <ul class="feature-list">
+                            <li>View enrolled courses</li>
+                            <li>Course details and schedule</li>
+                            <li>Professor information</li>
+                            <li>Quick attendance check</li>
+                        </ul>
+                    </div>
+                    <div class="mockup-card">
+                        <h3>📊 Attendance Records</h3>
+                        <div class="mockup-image">Attendance Table</div>
+                        <ul class="feature-list">
+                            <li>Detailed attendance history</li>
+                            <li>Attendance percentage</li>
+                            <li>Submit justifications</li>
+                            <li>Download reports</li>
+                        </ul>
+                    </div>
+                    <div class="mockup-card">
+                        <h3>📝 Justifications</h3>
+                        <div class="mockup-image">Justification Form</div>
+                        <ul class="feature-list">
+                            <li>Submit absence reasons</li>
+                            <li>Upload supporting documents</li>
+                            <li>Track approval status</li>
+                            <li>Communication with professors</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="role-section">
+            <div class="role-header">
+                <h2>👨‍🏫 Professor Dashboard</h2>
+                <p>Manage sessions, mark attendance, review justifications</p>
+            </div>
+            <div class="role-content">
+                <div class="mockup-grid">
+                    <div class="mockup-card">
+                        <h3>📅 Session Management</h3>
+                        <div class="mockup-image">Session Calendar</div>
+                        <ul class="feature-list">
+                            <li>Create attendance sessions</li>
+                            <li>Manage course groups</li>
+                            <li>Real-time attendance marking</li>
+                            <li>Session statistics</li>
+                        </ul>
+                    </div>
+                    <div class="mockup-card">
+                        <h3>✅ Mark Attendance</h3>
+                        <div class="mockup-image">Attendance Interface</div>
+                        <ul class="feature-list">
+                            <li>Quick present/absent marking</li>
+                            <li>Bulk operations</li>
+                            <li>Student list with photos</li>
+                            <li>Session timer</li>
+                        </ul>
+                    </div>
+                    <div class="mockup-card">
+                        <h3>📈 Reports & Analytics</h3>
+                        <div class="mockup-image">Analytics Dashboard</div>
+                        <ul class="feature-list">
+                            <li>Attendance summaries</li>
+                            <li>Student performance</li>
+                            <li>Export reports</li>
+                            <li>Trend analysis</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="role-section">
+            <div class="role-header">
+                <h2>⚙️ Administrator Dashboard</h2>
+                <p>System management, user administration, global statistics</p>
+            </div>
+            <div class="role-content">
+                <div class="mockup-grid">
+                    <div class="mockup-card">
+                        <h3>👥 User Management</h3>
+                        <div class="mockup-image">User Admin Panel</div>
+                        <ul class="feature-list">
+                            <li>Add/edit/delete users</li>
+                            <li>Bulk import students</li>
+                            <li>Role assignments</li>
+                            <li>User activity logs</li>
+                        </ul>
+                    </div>
+                    <div class="mockup-card">
+                        <h3>📊 System Statistics</h3>
+                        <div class="mockup-image">System Dashboard</div>
+                        <ul class="feature-list">
+                            <li>Global attendance rates</li>
+                            <li>Course performance</li>
+                            <li>User engagement</li>
+                            <li>System health metrics</li>
+                        </ul>
+                    </div>
+                    <div class="mockup-card">
+                        <h3>🔧 System Configuration</h3>
+                        <div class="mockup-image">Settings Panel</div>
+                        <ul class="feature-list">
+                            <li>System preferences</li>
+                            <li>Security settings</li>
+                            <li>Backup management</li>
+                            <li>Integration settings</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="workflow-section">
+            <h2 style="text-align: center; color: #007bff; margin-bottom: 2rem;">📋 System Workflow</h2>
+            <div class="workflow-grid">
+                <div class="workflow-step">
+                    <h4>1. Session Creation</h4>
+                    <p>Professor creates attendance session for a specific course and group</p>
+                </div>
+                <div class="workflow-step">
+                    <h4>2. Real-time Marking</h4>
+                    <p>Students' attendance is marked during the session</p>
+                </div>
+                <div class="workflow-step">
+                    <h4>3. Justification Process</h4>
+                    <p>Students can submit justifications for absences</p>
+                </div>
+                <div class="workflow-step">
+                    <h4>4. Review & Approval</h4>
+                    <p>Professors and admins review and approve justifications</p>
+                </div>
+                <div class="workflow-step">
+                    <h4>5. Reporting</h4>
+                    <p>Generate comprehensive attendance reports</p>
+                </div>
+                <div class="workflow-step">
+                    <h4>6. Analytics</h4>
+                    <p>Track trends and performance metrics</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tech-stack">
+            <h2>🛠️ Technology Stack</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h5>Frontend</h5>
+                    <p>HTML5, CSS3, JavaScript, jQuery</p>
+                </div>
+                <div class="tech-item">
+                    <h5>Backend</h5>
+                    <p>PHP 7.4+, MySQL 5.7+</p>
+                </div>
+                <div class="tech-item">
+                    <h5>Security</h5>
+                    <p>bcrypt, Sessions, RBAC</p>
+                </div>
+                <div class="tech-item">
+                    <h5>Deployment</h5>
+                    <p>Apache/Nginx, Docker</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Algiers University Attendance Management System</p>
+        <p>UI Prototype - Development in Progress</p>
+    </div>
+</body>
+</html>
